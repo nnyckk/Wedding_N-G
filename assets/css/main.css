@@ -267,12 +267,12 @@ body {
 #music-btn {
   position: fixed;
   bottom: 28px;
-  right: 28px;
+  left: 28px;
   z-index: 999;
   width: 52px; height: 52px;
   border-radius: 50%;
   background: var(--color-espresso-mid);
-  border: 1.5px solid var(--color-caramel);
+  border: 1px solid var(--color-caramel);
   cursor: pointer;
   display: flex; align-items: center; justify-content: center;
   box-shadow: var(--shadow-lg);
@@ -282,8 +282,12 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 #music-btn.visible {
-  opacity: 1;
+  opacity: 0.45;
   pointer-events: auto;
+}
+#music-btn.visible:hover,
+#music-btn.visible:active {
+  opacity: 1;
 }
 #music-btn:hover  { background: var(--color-coffee); transform: scale(1.08); }
 #music-btn:active { transform: scale(0.95); }
