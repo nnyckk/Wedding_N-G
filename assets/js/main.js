@@ -36,7 +36,7 @@ function toggleMusic() {
   }, {
     threshold: 0,
     rootMargin: '20% 0px 0px 0px',
-    root: phoneScroll || null
+    root: (phoneScroll && window.innerWidth >= 520) ? phoneScroll : null
   });
 
   observer.observe(sentinel);
