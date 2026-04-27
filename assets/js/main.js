@@ -2,18 +2,20 @@ var audio     = document.getElementById('bg-audio');
 var peekTimer = null;
 
 function updateIcon() {
-  document.getElementById('play-icon').textContent = audio.paused ? 'play_arrow' : 'pause';
+  var icon = document.getElementById('music-icon');
+  if (icon) icon.textContent = audio.paused ? 'play_arrow' : 'music_note';
 }
 
 function toggleMusic() {
+  var btn = document.getElementById('music-btn');
+
   if (audio.paused) {
-    audio.play().then(updateIcon).catch(function(){});
+    audio.play().then(updateIcon).catch(function () {});
   } else {
     audio.pause();
     updateIcon();
   }
 
-  var btn = document.getElementById('music-btn');
   btn.classList.add('peeked');
   clearTimeout(peekTimer);
   peekTimer = setTimeout(function () {

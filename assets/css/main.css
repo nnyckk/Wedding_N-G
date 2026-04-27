@@ -285,18 +285,17 @@ body {
   opacity: 0.45;
   pointer-events: auto;
 }
+#music-btn.visible.peeked {
+  opacity: 1;
+}
 #music-btn:hover  { background: var(--color-coffee); transform: scale(1.08); }
 #music-btn:active { transform: scale(0.95); }
 #music-btn .material-symbols-rounded {
   font-size: 24px;
   color: var(--color-cream);
   user-select: none;
-  transition: opacity 0.2s ease;
+  font-variation-settings: 'FILL' 1;
 }
-#music-btn .icon-hover { display: none; }
-#music-btn.peeked .icon-default { display: none; }
-#music-btn.peeked .icon-hover   { display: inline; }
-#music-btn.visible.peeked { opacity: 1; }
 
 /* ========================
    COUNTDOWN

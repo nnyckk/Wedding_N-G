@@ -12,8 +12,8 @@
   if (phoneScroll) phoneScroll.style.overflowY = 'hidden';
 
   function updateMusicIcon() {
-    var el = document.getElementById('play-icon');
-    if (el && audio) el.textContent = audio.paused ? 'play_arrow' : 'pause';
+    var el = document.getElementById('music-icon');
+    if (el && audio) el.textContent = audio.paused ? 'play_arrow' : 'music_note';
   }
 
   overlay.addEventListener('click', function () {
