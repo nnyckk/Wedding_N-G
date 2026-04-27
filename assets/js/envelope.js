@@ -1,13 +1,15 @@
 (function () {
-  var overlay = document.getElementById('intro-overlay');
-  var wrap    = document.getElementById('envelope-wrap');
-  var audio   = document.getElementById('bg-audio');
-  var opened  = false;
+  var overlay     = document.getElementById('intro-overlay');
+  var wrap        = document.getElementById('envelope-wrap');
+  var audio       = document.getElementById('bg-audio');
+  var phoneScroll = document.getElementById('phone-scroll');
+  var opened      = false;
 
   if (!overlay) return;
 
   /* Lock scroll while overlay is visible */
   document.body.style.overflow = 'hidden';
+  if (phoneScroll) phoneScroll.style.overflowY = 'hidden';
 
   function updateMusicIcon() {
     var el = document.getElementById('play-icon');
@@ -34,6 +36,7 @@
       setTimeout(function () {
         overlay.remove();
         document.body.style.overflow = '';
+        if (phoneScroll) phoneScroll.style.overflowY = '';
       }, 950);
     }, 1150);
   });

@@ -1,4 +1,5 @@
-var audio = document.getElementById('bg-audio');
+var audio     = document.getElementById('bg-audio');
+var peekTimer = null;
 
 function updateIcon() {
   document.getElementById('play-icon').textContent = audio.paused ? 'play_arrow' : 'pause';
@@ -11,12 +12,20 @@ function toggleMusic() {
     audio.pause();
     updateIcon();
   }
+
+  var btn = document.getElementById('music-btn');
+  btn.classList.add('peeked');
+  clearTimeout(peekTimer);
+  peekTimer = setTimeout(function () {
+    btn.classList.remove('peeked');
+  }, 3000);
 }
 
 /* ── Music btn: visible when hero top has scrolled off screen ── */
 (function () {
-  var btn  = document.getElementById('music-btn');
-  var hero = document.querySelector('.hero-photo');
+  var btn         = document.getElementById('music-btn');
+  var hero        = document.querySelector('.hero-photo');
+  var phoneScroll = document.getElementById('phone-scroll');
 
   var sentinel = document.createElement('div');
   sentinel.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:1px;pointer-events:none;';
@@ -24,7 +33,11 @@ function toggleMusic() {
 
   var observer = new IntersectionObserver(function (entries) {
     btn.classList.toggle('visible', !entries[0].isIntersecting);
-  }, { threshold: 0, rootMargin: '20% 0px 0px 0px' });
+  }, {
+    threshold: 0,
+    rootMargin: '20% 0px 0px 0px',
+    root: phoneScroll || null
+  });
 
   observer.observe(sentinel);
 })();

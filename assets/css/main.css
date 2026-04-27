@@ -70,7 +70,7 @@ body {
 
 .hero-title {
   font-family: 'Great Vibes', cursive;
-  font-size: clamp(48px, 13vw, 100px);
+  font-size: 52px;
   color: var(--color-cream);
   line-height: 1.0;
   text-shadow: 0 2px 32px rgba(0,0,0,0.4);
@@ -285,10 +285,6 @@ body {
   opacity: 0.45;
   pointer-events: auto;
 }
-#music-btn.visible:hover,
-#music-btn.visible:active {
-  opacity: 1;
-}
 #music-btn:hover  { background: var(--color-coffee); transform: scale(1.08); }
 #music-btn:active { transform: scale(0.95); }
 #music-btn .material-symbols-rounded {
@@ -298,8 +294,9 @@ body {
   transition: opacity 0.2s ease;
 }
 #music-btn .icon-hover { display: none; }
-#music-btn:hover .icon-default { display: none; }
-#music-btn:hover .icon-hover   { display: inline; }
+#music-btn.peeked .icon-default { display: none; }
+#music-btn.peeked .icon-hover   { display: inline; }
+#music-btn.visible.peeked { opacity: 1; }
 
 /* ========================
    COUNTDOWN
@@ -347,17 +344,17 @@ body {
   margin-top: 36px;
 }
 .cd-item {
-  min-width: 76px;
+  min-width: 61px;
   text-align: center;
   padding: 0 4px;
 }
 .cd-sep {
   font-family: 'Montserrat', sans-serif;
-  font-size: 28px;
+  font-size: 22px;
   font-weight: 200;
   color: var(--color-caramel-light);
   line-height: 1;
-  padding-top: 22px;
+  padding-top: 18px;
   padding-left: 2px;
   padding-right: 2px;
   opacity: 0.6;
@@ -374,10 +371,10 @@ body {
 
 /* ── Flip Clock (ore · minute · secunde) ── */
 .flip-clock {
-  --fc-h: 72px;
+  --fc-h: 58px;
   position: relative;
   display: inline-block;
-  width: 58px;
+  width: 69px;
   height: var(--fc-h);
   perspective: 500px;
   border-radius: 5px;
@@ -414,7 +411,7 @@ body {
 }
 .fc-half span {
   font-family: 'Montserrat', sans-serif;
-  font-size: 46px;
+  font-size: 37px;
   font-weight: 200;
   color: var(--color-espresso);
   line-height: 1;
@@ -442,8 +439,8 @@ body {
   z-index: 10;
   pointer-events: none;
 }
-/* Days needs extra width for 3-digit values (e.g. 183) */
-#fc-days { width: 86px; }
+/* All flip cards uniform width; days uses same base width */
+#fc-days { width: 69px; }
 
 /* ========================
    CALENDAR
@@ -890,155 +887,6 @@ body {
 .section-confirm .confirm-email  { color: rgba(255,248,239,0.4); }
 .section-confirm .confirm-sep    { background: rgba(255,255,255,0.1); }
 
-/* ========================
-   MEDIA — iPad Portrait (768px)
-======================== */
-@media (min-width: 768px) {
-
-  .hero-title     { font-size: 90px; }
-  .hero-names     { padding-bottom: 60px; }
-
-  .section-intro  { padding: 52px 40px 40px; }
-  .intro-text     { font-size: 14px; }
-
-  .photo-slot        { margin: 0 40px; }
-  .photo-slot--hero { height: 520px; }
-  .photo-slot--md   { height: 360px; }
-  .photo-slot--sm   { height: 460px; }
-  .photo-arch-wrap  { max-width: 360px; margin: 0 auto; }
-  .photo-arch-wrap .photo-slot { margin: 0; height: 520px; }
-  .photo-rect-wrap  { margin: 40px 40px; }
-
-  .photo-caption  { padding: 30px 40px; }
-  .quote          { font-size: 18px; }
-
-  .section-countdown { padding: 42px 40px 48px; }
-  .cd-item           { min-width: 78px; }
-  .cd-sep            { padding-top: 25px; }
-  .flip-clock        { --fc-h: 78px; width: 62px; }
-  .flip-clock .fc-half span { font-size: 50px; }
-  #fc-days           { width: 92px; }
-
-  .cal-month        { font-size: 22px; }
-  .cal-day          { font-size: 13px; height: 40px; }
-  .cal-dname        { font-size: 10px; }
-  .cal-day.active   { width: 34px; height: 34px; font-size: 14px; }
-
-  .section-venue,
-  .section-dress,
-  .section-confirm,
-  .section-thanks { padding-left: 40px; padding-right: 40px; }
-
-  .section-venue  { padding-top: 52px; padding-bottom: 52px; }
-  .vt-time        { font-size: 68px; }
-
-  .section-dress  { padding-top: 52px; padding-bottom: 52px; }
-
-  .section-confirm { padding-bottom: 52px; }
-
-  #music-btn      { width: 58px; height: 58px; bottom: 36px; right: 36px; }
-}
-
-/* ========================
-   MEDIA — iPad Landscape (1024px)
-======================== */
-@media (min-width: 1024px) {
-
-  .hero-title  { font-size: 108px; }
-
-  .photo-slot--hero { height: 580px; }
-  .photo-slot--md   { height: 400px; }
-  .photo-arch-wrap .photo-slot { height: 580px; }
-
-  .cd-sep      { font-size: 46px; padding-top: 19px; }
-  .flip-clock  { --fc-h: 84px; width: 66px; }
-  .flip-clock .fc-half span { font-size: 54px; }
-  #fc-days     { width: 98px; }
-
-  #music-btn   { bottom: 40px; right: 40px; }
-}
-
-/* ========================
-   MEDIA — Desktop (1280px)
-======================== */
-@media (min-width: 1280px) {
-
-  /* conținut centrat în secțiuni */
-  .section-inner {
-    max-width: 720px;
-    margin: 0 auto;
-  }
-
-  /* hero */
-  .hero-title     { font-size: 124px; }
-  .hero-names     { padding-bottom: 72px; }
-
-  /* intro */
-  .section-intro  { padding: 72px 0; }
-  .intro-text     { font-size: 15px; }
-  .divider-floral::before,
-  .divider-floral::after { width: 80px; }
-
-  /* foto */
-  .photo-slot        { max-width: var(--container-max); margin: 0 auto; }
-  .photo-slot--hero { height: 100vh; }
-  .photo-slot--md   { height: 55vh; }
-  .photo-slot--sm   { height: 60vh; }
-  .quote            { font-size: 20px; line-height: 2; }
-  .photo-caption    { padding: 40px 0; }
-  .photo-arch-wrap  { max-width: 360px; margin: 0 auto; }
-  .photo-arch-wrap .photo-slot { height: 680px; margin: 0; }
-  .photo-rect-wrap  { max-width: var(--container-max); margin: 52px auto; }
-
-  /* countdown */
-  .section-countdown { padding: 72px 0; }
-  .cd-sep            { font-size: 56px; padding-top: 22px; }
-  .cd-item           { min-width: 100px; }
-  .cd-unit           { font-size: 10px; letter-spacing: 4px; }
-  .flip-clock        { --fc-h: 100px; width: 80px; }
-  .flip-clock .fc-half span { font-size: 64px; }
-  #fc-days           { width: 118px; }
-
-  /* calendar */
-  .cal-month          { font-size: 24px; }
-  .cal-grid           { max-width: 480px; margin: 0 auto; }
-  .cal-day            { font-size: 14px; height: 44px; }
-  .cal-dname          { font-size: 11px; padding-bottom: 14px; }
-  .cal-day.active     { width: 40px; height: 40px; font-size: 15px; }
-
-  /* venue */
-  .section-venue      { padding: 72px 0; }
-  .vt-time            { font-size: 76px; }
-
-  /* dress */
-  .section-dress      { padding: 72px 0; }
-
-  /* confirm */
-  .section-confirm    { padding: 72px 0; }
-
-  /* thanks */
-  .section-thanks     { padding: 72px 0 32px; }
-
-  /* music btn */
-  #music-btn { width: 62px; height: 62px; bottom: 44px; right: 44px; }
-}
-
-/* ========================
-   MEDIA — Desktop Large (1600px)
-======================== */
-@media (min-width: 1600px) {
-  .section-inner  { max-width: 860px; }
-
-  .hero-title     { font-size: 148px; }
-
-  .cd-sep         { font-size: 66px; padding-top: 25px; }
-  .cd-item        { min-width: 120px; }
-  .flip-clock     { --fc-h: 116px; width: 92px; }
-  .flip-clock .fc-half span { font-size: 74px; }
-  #fc-days        { width: 136px; }
-
-  .cal-grid       { max-width: 560px; }
-}
 
 /* ========================
    ANIMATIONS
