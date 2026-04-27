@@ -21,25 +21,20 @@ function toggleMusic() {
   }, 3000);
 }
 
-/* ── Music btn: visible when hero top has scrolled off screen ── */
+/* ── Music btn: visible when hero has scrolled mostly off screen ── */
 (function () {
   var btn         = document.getElementById('music-btn');
   var hero        = document.querySelector('.hero-photo');
   var phoneScroll = document.getElementById('phone-scroll');
 
-  var sentinel = document.createElement('div');
-  sentinel.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:1px;pointer-events:none;';
-  hero.prepend(sentinel);
+  function update() {
+    var rect = hero.getBoundingClientRect();
+    btn.classList.toggle('visible', rect.bottom < window.innerHeight * 0.4);
+  }
 
-  var observer = new IntersectionObserver(function (entries) {
-    btn.classList.toggle('visible', !entries[0].isIntersecting);
-  }, {
-    threshold: 0,
-    rootMargin: '20% 0px 0px 0px',
-    root: (phoneScroll && window.innerWidth >= 520) ? phoneScroll : null
-  });
-
-  observer.observe(sentinel);
+  var scrollEl = (phoneScroll && window.innerWidth >= 520) ? phoneScroll : window;
+  scrollEl.addEventListener('scroll', update, { passive: true });
+  update();
 })();
 
 
