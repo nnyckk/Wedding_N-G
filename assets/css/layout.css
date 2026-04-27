@@ -182,6 +182,10 @@
     position: absolute;
   }
 
+  #phone-frame #rsvp-overlay {
+    position: absolute;
+  }
+
   #phone-frame #music-btn {
     position: absolute;
     bottom: 28px;

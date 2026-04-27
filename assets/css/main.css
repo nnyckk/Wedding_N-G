@@ -888,6 +888,348 @@ body {
 
 
 /* ========================
+   CONFIRMARE ONLINE BTN
+======================== */
+.confirm-online {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-top: 32px;
+}
+.confirm-or {
+  font-size: 9px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(255,248,239,0.25);
+}
+.confirm-online-btn {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-caramel);
+  background: transparent;
+  border: 1px solid rgba(200,136,90,0.4);
+  border-radius: 50px;
+  padding: 12px 28px;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition);
+  -webkit-tap-highlight-color: transparent;
+}
+.confirm-online-btn:hover,
+.confirm-online-btn:active {
+  background: rgba(200,136,90,0.1);
+  border-color: var(--color-caramel);
+}
+
+/* ========================
+   RSVP MODAL
+======================== */
+#rsvp-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: rgba(12,4,1,0.82);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+#rsvp-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.rsvp-modal {
+  background: var(--color-surface);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 340px;
+  max-height: 82dvh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  scrollbar-width: none;
+  padding: 36px 22px 28px;
+  box-shadow: 0 24px 64px rgba(12,4,1,0.5);
+  transform: translateY(16px);
+  transition: transform 0.3s ease;
+}
+.rsvp-modal::-webkit-scrollbar { display: none; }
+#rsvp-overlay.open .rsvp-modal { transform: translateY(0); }
+
+.rsvp-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background: transparent;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  font-size: 18px;
+  line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  transition: background var(--transition);
+  -webkit-tap-highlight-color: transparent;
+}
+.rsvp-close:hover { background: var(--color-surface-alt); }
+
+.rsvp-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 36px;
+  color: var(--color-coffee);
+  text-align: center;
+  line-height: 1.1;
+  margin-bottom: 2px;
+}
+.rsvp-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0 22px;
+  color: rgba(200,136,90,0.35);
+}
+.rsvp-divider span { flex:1; height:1px; background:currentColor; }
+
+/* ── Person card ── */
+.rsvp-person {
+  background: rgba(200,136,90,0.06);
+  border: 1px solid rgba(200,136,90,0.18);
+  border-radius: 10px;
+  padding: 14px;
+  margin-bottom: 10px;
+}
+.rsvp-person-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.rsvp-person-label {
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-caramel);
+  opacity: 0.85;
+  margin-bottom: 10px;
+}
+.rsvp-remove {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  border: 1px solid rgba(200,136,90,0.35);
+  background: transparent;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  font-size: 15px;
+  display: flex; align-items: center; justify-content: center;
+  line-height: 1;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ── Inputs ── */
+.rsvp-input {
+  width: 100%;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  color: var(--color-text);
+  margin-bottom: 10px;
+  outline: none;
+  transition: border-color var(--transition);
+  box-sizing: border-box;
+}
+.rsvp-input:focus { border-color: var(--color-caramel); }
+.rsvp-input::placeholder { color: var(--color-text-light); }
+
+/* ── Custom Dropdown ── */
+.rsvp-dropdown {
+  position: relative;
+  width: 100%;
+  margin-bottom: 12px;
+}
+.rsvp-dropdown-trigger {
+  position: relative;
+  width: 100%;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 11px 36px 11px 12px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  color: var(--color-text);
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: border-color var(--transition), background var(--transition);
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+}
+.rsvp-dropdown-trigger.placeholder .rsvp-dropdown-value {
+  color: var(--color-text-light);
+}
+.rsvp-dropdown.open .rsvp-dropdown-trigger,
+.rsvp-dropdown-trigger:focus {
+  border-color: var(--color-caramel);
+  outline: none;
+}
+.rsvp-dropdown-arrow {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-caramel);
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+  pointer-events: none;
+}
+.rsvp-dropdown.open .rsvp-dropdown-arrow {
+  transform: translateY(-50%) rotate(180deg);
+}
+.rsvp-dropdown-list {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0; right: 0;
+  background: var(--color-surface);
+  border: 1px solid rgba(200,136,90,0.45);
+  border-radius: 8px;
+  list-style: none;
+  z-index: 200;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  box-shadow: 0 8px 28px rgba(44,24,16,0.14);
+}
+.rsvp-dropdown.open .rsvp-dropdown-list {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.rsvp-dropdown-list li {
+  padding: 12px 14px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background var(--transition), color var(--transition);
+}
+.rsvp-dropdown-list li + li {
+  border-top: 1px solid rgba(200,136,90,0.1);
+}
+.rsvp-dropdown-list li:hover {
+  background: rgba(200,136,90,0.08);
+  color: var(--color-coffee);
+}
+.rsvp-dropdown-list li.selected {
+  color: var(--color-coffee);
+  font-weight: 500;
+}
+.rsvp-dropdown-list li.selected::after {
+  content: '✓';
+  font-size: 11px;
+  color: var(--color-caramel);
+}
+
+/* ── Add person btn ── */
+.rsvp-add-btn {
+  width: 100%;
+  padding: 11px;
+  border: 1px dashed rgba(200,136,90,0.4);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--color-caramel);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  margin-bottom: 16px;
+  transition: background var(--transition), border-color var(--transition);
+  -webkit-tap-highlight-color: transparent;
+}
+.rsvp-add-btn:hover,
+.rsvp-add-btn:active {
+  background: rgba(200,136,90,0.08);
+  border-color: var(--color-caramel);
+}
+
+/* ── Textarea ── */
+.rsvp-textarea {
+  width: 100%;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  color: var(--color-text);
+  resize: none;
+  height: 76px;
+  margin-bottom: 18px;
+  outline: none;
+  transition: border-color var(--transition);
+  box-sizing: border-box;
+}
+.rsvp-textarea:focus { border-color: var(--color-caramel); }
+.rsvp-textarea::placeholder { color: var(--color-text-light); }
+
+/* ── Status mesaj ── */
+.rsvp-status {
+  display: none;
+  border-radius: 8px;
+  padding: 11px 14px;
+  font-size: 12px;
+  letter-spacing: 0.3px;
+  line-height: 1.5;
+  margin-bottom: 14px;
+  text-align: center;
+}
+.rsvp-status.success {
+  display: block;
+  background: rgba(52,168,83,0.12);
+  border: 1px solid rgba(52,168,83,0.4);
+  color: #2a7a40;
+}
+.rsvp-status.error {
+  display: block;
+  background: rgba(220,53,69,0.1);
+  border: 1px solid rgba(220,53,69,0.35);
+  color: #b02a37;
+}
+
+/* ── Submit ── */
+.rsvp-submit {
+  width: 100%;
+  padding: 14px;
+  background: var(--color-espresso);
+  color: var(--color-cream);
+  border: none;
+  border-radius: 8px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background var(--transition), opacity var(--transition);
+  -webkit-tap-highlight-color: transparent;
+}
+.rsvp-submit:hover { background: var(--color-coffee); }
+.rsvp-submit:disabled { opacity: 0.6; cursor: default; }
+
+/* ========================
    ANIMATIONS
 ======================== */
 @keyframes fadeUp {

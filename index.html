@@ -343,15 +343,20 @@
       <div class="confirm-contacts">
         <div class="confirm-contact">
           <span class="confirm-name">Nick</span>
-          <a class="confirm-phone" href="tel:+40712345678">+40 712 345 678</a>
+          <a class="confirm-phone" href="tel:+40775698767">0775 698 767</a>
           <a class="confirm-email" href="mailto:neagoe.nick@gmail.com">neagoe.nick@gmail.com</a>
         </div>
         <div class="confirm-sep" aria-hidden="true"></div>
         <div class="confirm-contact">
           <span class="confirm-name">Georgi</span>
-          <a class="confirm-phone" href="tel:+40787654321">+40 787 654 321</a>
+          <a class="confirm-phone" href="tel:+40771290702">0771 290 702</a>
           <a class="confirm-email" href="mailto:georgianamaior@gmail.com">georgianamaior@gmail.com</a>
         </div>
+      </div>
+
+      <div class="confirm-online">
+        <span class="confirm-or">sau</span>
+        <button class="confirm-online-btn" onclick="openRsvp()">Confirmă online</button>
       </div>
     </div>
   </section>
@@ -423,6 +428,67 @@
 <button id="music-btn" onclick="toggleMusic()" aria-label="Play / Pause muzică">
   <span class="material-symbols-rounded" id="music-icon">pause</span>
 </button>
+
+<!-- RSVP Modal -->
+<div id="rsvp-overlay" aria-hidden="true">
+  <div class="rsvp-modal" role="dialog" aria-label="Confirmare prezență">
+
+    <button class="rsvp-close" onclick="closeRsvp()" aria-label="Închide">×</button>
+
+    <p class="rsvp-title">Confirmă prezența</p>
+    <div class="rsvp-divider">
+      <span></span>
+      <svg width="7" height="7" viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg"><path d="M4 0L8 4L4 8L0 4Z" fill="currentColor"/></svg>
+      <span></span>
+    </div>
+
+    <form id="rsvp-form" onsubmit="submitRsvp(event)">
+
+      <!-- Din partea cui (o singură dată, pentru tot grupul) -->
+      <div class="rsvp-dropdown">
+        <button type="button" class="rsvp-dropdown-trigger placeholder">
+          <span class="rsvp-dropdown-value">Din partea cui veniți?</span>
+          <svg class="rsvp-dropdown-arrow" viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg" width="10" height="6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+        </button>
+        <ul class="rsvp-dropdown-list">
+          <li data-value="mire">Partea mirelui</li>
+          <li data-value="mireasa">Partea miresei</li>
+        </ul>
+        <input type="hidden" name="side" value="">
+      </div>
+
+      <!-- Persoana 1 (permanentă) -->
+      <div class="rsvp-person">
+        <p class="rsvp-person-label">Persoana 1</p>
+        <input type="text" name="name_0" placeholder="Nume și prenume" class="rsvp-input" required>
+        <div class="rsvp-dropdown">
+          <button type="button" class="rsvp-dropdown-trigger placeholder">
+            <span class="rsvp-dropdown-value">Adult sau copil?</span>
+            <svg class="rsvp-dropdown-arrow" viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg" width="10" height="6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+          </button>
+          <ul class="rsvp-dropdown-list">
+            <li data-value="adult">Adult</li>
+            <li data-value="child">Copil (sub 10 ani)</li>
+          </ul>
+          <input type="hidden" name="type_0" value="">
+        </div>
+      </div>
+
+      <!-- Persoane adăugate dinamic -->
+      <div id="rsvp-extra"></div>
+
+      <button type="button" class="rsvp-add-btn" onclick="addRsvpGuest()">+ Adaugă persoană</button>
+
+      <textarea class="rsvp-textarea" name="notes" placeholder="Notițe sau mențiuni speciale (alergii, etc.)…"></textarea>
+
+      <div id="rsvp-status" class="rsvp-status" aria-live="polite"></div>
+
+      <button type="submit" class="rsvp-submit">Confirmă prezența</button>
+    </form>
+
+  </div>
+</div>
+
 </div><!-- #phone-frame -->
 
 <script src="assets/js/envelope.js?v=1.2"></script>
