@@ -1,3 +1,5 @@
+var RSVP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw_OybF6iqbhlvJhljjpb7_12Y5IcmQM0VBMxhHGq0O3otiTuHLjbPdBTVyVnT29ywi/exec';
+
 /* ── RSVP Custom Dropdowns ── */
 function initDropdown(dropdown) {
   var trigger = dropdown.querySelector('.rsvp-dropdown-trigger');
@@ -141,13 +143,23 @@ function submitRsvp(e) {
   btn.textContent = 'Se trimite…';
   btn.disabled = true;
 
-  /* TODO: Google Apps Script fetch */
-  setTimeout(function () {
+  var payload = {};
+  new FormData(form).forEach(function (val, key) { payload[key] = val; });
+
+  fetch(RSVP_SCRIPT_URL + '?' + new URLSearchParams(payload), {
+    mode: 'no-cors'
+  })
+  .then(function () {
     setRsvpStatus('success', 'Confirmare trimisă! Te așteptăm cu drag.');
     btn.textContent = 'Confirmă prezența';
     btn.disabled = false;
     setTimeout(closeRsvp, 2500);
-  }, 900);
+  })
+  .catch(function () {
+    setRsvpStatus('error', 'A apărut o eroare. Te rog să ne contactezi direct.');
+    btn.textContent = 'Confirmă prezența';
+    btn.disabled = false;
+  });
 }
 
 document.getElementById('rsvp-overlay').addEventListener('click', function (e) {

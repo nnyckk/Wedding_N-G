@@ -894,33 +894,46 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
-  margin-top: 32px;
+  margin-top: 28px;
+  margin-bottom: 28px;
 }
 .confirm-or {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  color: rgba(200,136,90,0.45);
+}
+.confirm-or span {
+  flex: 1;
+  height: 1px;
+  background: currentColor;
+}
+.confirm-or p {
   font-size: 9px;
-  letter-spacing: 4px;
+  letter-spacing: 3px;
   text-transform: uppercase;
-  color: rgba(255,248,239,0.25);
+  white-space: nowrap;
 }
 .confirm-online-btn {
   font-family: 'Montserrat', sans-serif;
   font-size: 10px;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: var(--color-caramel);
-  background: transparent;
-  border: 1px solid rgba(200,136,90,0.4);
+  color: var(--color-espresso);
+  background: var(--color-caramel);
+  border: none;
   border-radius: 50px;
-  padding: 12px 28px;
+  padding: 16px 36px;
   cursor: pointer;
-  transition: background var(--transition), border-color var(--transition);
+  transition: background var(--transition), transform var(--transition);
   -webkit-tap-highlight-color: transparent;
+  box-shadow: 0 4px 20px rgba(200,136,90,0.35);
 }
 .confirm-online-btn:hover,
 .confirm-online-btn:active {
-  background: rgba(200,136,90,0.1);
-  border-color: var(--color-caramel);
+  background: var(--color-caramel-light);
+  transform: translateY(-1px);
 }
 
 
