@@ -38,6 +38,16 @@ body {
   object-fit: cover;
   object-position: center top;
   display: block;
+  pointer-events: none;
+}
+.hero-media::-webkit-media-controls,
+.hero-media::-webkit-media-controls-enclosure,
+.hero-media::-webkit-media-controls-panel,
+.hero-media::-webkit-media-controls-play-button,
+.hero-media::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .hero-overlay {
