@@ -606,8 +606,15 @@ body {
 .photo-footer::after {
   content: '';
   position: absolute;
-  inset: 0;
-  background: rgba(20, 8, 4, 0.45);
+  bottom: 0; left: 0; right: 0;
+  height: 50%;
+  background: linear-gradient(
+    to top,
+    rgba(12,4,1,0.65) 0%,
+    rgba(12,4,1,0.25) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
 }
 .section-venue-photo {
   background: #fff;
