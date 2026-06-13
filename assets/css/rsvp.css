@@ -25,16 +25,35 @@
   width: 100%;
   max-width: 340px;
   max-height: 82dvh;
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: hidden;
   position: relative;
-  scrollbar-width: none;
-  padding: 36px 22px 28px;
+  display: flex;
+  flex-direction: column;
   box-shadow: 0 24px 64px rgba(12,4,1,0.5);
   transform: translateY(16px);
   transition: transform 0.3s ease;
 }
-.rsvp-modal::-webkit-scrollbar { display: none; }
+.rsvp-header {
+  flex-shrink: 0;
+  background: var(--color-surface);
+  padding: 34px 22px 6px;
+  border-radius: 16px 16px 0 0;
+  position: relative;
+  z-index: 5;
+  box-shadow: 0 0 0 rgba(44,26,18,0);
+  transition: box-shadow 0.25s ease;
+}
+.rsvp-modal.scrolled .rsvp-header {
+  box-shadow: 0 4px 8px -5px rgba(44,26,18,0.18);
+}
+.rsvp-scroll {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  padding: 6px 22px 28px;
+}
+.rsvp-scroll::-webkit-scrollbar { display: none; }
 #rsvp-overlay.open .rsvp-modal { transform: translateY(0); }
 
 .rsvp-close {
@@ -42,10 +61,11 @@
   position: absolute;
   top: 14px;
   right: 14px;
+  z-index: 10;
   width: 30px; height: 30px;
   border-radius: 50%;
   border: 1px solid var(--color-border);
-  background: transparent;
+  background: var(--color-surface);
   cursor: pointer;
   color: var(--color-text-muted);
   font-size: 18px;
@@ -70,7 +90,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  margin: 10px 0 22px;
+  margin: 10px 0 10px;
   color: rgba(200,136,90,0.35);
 }
 .rsvp-divider span { flex:1; height:1px; background:currentColor; }
@@ -120,7 +140,7 @@
   border-radius: 6px;
   padding: 10px 12px;
   font-family: 'Cormorant Garamond', serif;
-  font-size: 13px;
+  font-size: 16px;
   color: var(--color-text);
   margin-bottom: 10px;
   outline: none;
@@ -129,75 +149,6 @@
 }
 .rsvp-input:focus { border-color: var(--color-caramel); }
 .rsvp-input::placeholder { color: var(--color-text-light); }
-
-/* ── Tip meniu (dropdown + info) ── */
-.rsvp-type-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 12px;
-}
-.rsvp-type-row .rsvp-dropdown {
-  flex: 1;
-  margin-bottom: 0;
-}
-.rsvp-info {
-  position: relative;
-  flex-shrink: 0;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-caramel);
-  cursor: pointer;
-  outline: none;
-  -webkit-tap-highlight-color: transparent;
-}
-.rsvp-tooltip {
-  position: absolute;
-  bottom: calc(100% + 8px);
-  right: -6px;
-  width: 210px;
-  background: var(--color-espresso);
-  color: var(--color-cream);
-  font-size: 12px;
-  line-height: 1.45;
-  letter-spacing: 0.2px;
-  text-align: left;
-  padding: 10px 12px;
-  border-radius: 10px;
-  border: 1px solid rgba(200,136,90,0.3);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(4px);
-  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
-  z-index: 20;
-  pointer-events: none;
-}
-.rsvp-tooltip::after {
-  content: '';
-  position: absolute;
-  top: 100%;
-  right: 12px;
-  border: 6px solid transparent;
-  border-top-color: var(--color-espresso);
-}
-.rsvp-info:focus .rsvp-tooltip,
-.rsvp-info.show .rsvp-tooltip {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-@media (hover: hover) and (pointer: fine) {
-  .rsvp-info:hover .rsvp-tooltip {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
-}
 
 /* ── Custom Dropdown ── */
 .rsvp-dropdown {
@@ -213,7 +164,7 @@
   border-radius: 6px;
   padding: 11px 36px 11px 12px;
   font-family: 'Cormorant Garamond', serif;
-  font-size: 12px;
+  font-size: 16px;
   color: var(--color-text);
   text-align: left;
   cursor: pointer;
@@ -268,7 +219,7 @@
 .rsvp-dropdown-list li {
   padding: 12px 14px;
   font-family: 'Cormorant Garamond', serif;
-  font-size: 12px;
+  font-size: 16px;
   color: var(--color-text-muted);
   cursor: pointer;
   display: flex;
@@ -330,7 +281,7 @@
   border-radius: 6px;
   padding: 10px 12px;
   font-family: 'Cormorant Garamond', serif;
-  font-size: 13px;
+  font-size: 16px;
   color: var(--color-text);
   resize: none;
   height: 76px;
@@ -347,7 +298,7 @@
   display: none;
   border-radius: 8px;
   padding: 11px 14px;
-  font-size: 12px;
+  font-size: 16px;
   letter-spacing: 0.3px;
   line-height: 1.5;
   margin-bottom: 14px;

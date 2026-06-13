@@ -26,18 +26,10 @@ function initDropdown(dropdown) {
   });
 }
 
-document.addEventListener('click', function (e) {
+document.addEventListener('click', function () {
   document.querySelectorAll('.rsvp-dropdown.open').forEach(function (d) {
     d.classList.remove('open');
   });
-  var info = e.target.closest ? e.target.closest('.rsvp-info') : null;
-  document.querySelectorAll('.rsvp-info.show').forEach(function (el) {
-    if (el !== info) el.classList.remove('show');
-  });
-  if (info) {
-    e.stopPropagation();
-    info.classList.toggle('show');
-  }
 });
 
 /* ── RSVP Modal ── */
@@ -75,6 +67,9 @@ function closeRsvp() {
     document.querySelectorAll('#rsvp-form .rsvp-dropdown-list li').forEach(function (li) {
       li.classList.remove('selected');
     });
+    var sc = document.querySelector('.rsvp-scroll');
+    if (sc) sc.scrollTop = 0;
+    if (overlay) overlay.querySelector('.rsvp-modal').classList.remove('scrolled');
   }, 400);
 }
 
@@ -89,22 +84,16 @@ function addRsvpGuest() {
       '<button type="button" class="rsvp-remove" onclick="this.closest(\'.rsvp-person\').remove()" aria-label="Șterge">×</button>' +
     '</div>' +
     '<input type="text" name="name_' + n + '" placeholder="Nume și prenume" class="rsvp-input">' +
-    '<div class="rsvp-type-row">' +
-      '<div class="rsvp-dropdown">' +
-        '<button type="button" class="rsvp-dropdown-trigger placeholder" data-placeholder="Alege meniul">' +
-          '<span class="rsvp-dropdown-value">Alege meniul</span>' +
-          '<svg class="rsvp-dropdown-arrow" viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg" width="10" height="6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>' +
-        '</button>' +
-        '<ul class="rsvp-dropdown-list">' +
-          '<li data-value="adult">Meniu Adult</li>' +
-          '<li data-value="child">Meniu Copil</li>' +
-        '</ul>' +
-        '<input type="hidden" name="type_' + n + '" value="">' +
-      '</div>' +
-      '<span class="rsvp-info" tabindex="0" role="button" aria-label="Informații despre meniu">' +
-        '<svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12" y1="11" x2="12" y2="16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="7.5" r="1.3" fill="currentColor"/></svg>' +
-        '<span class="rsvp-tooltip" role="tooltip">Dumneavoastră, ca părinți, cunoașteți cel mai bine preferințele copilului. Vă rugăm să alegeți meniul potrivit — de adult sau de copil.</span>' +
-      '</span>' +
+    '<div class="rsvp-dropdown">' +
+      '<button type="button" class="rsvp-dropdown-trigger placeholder" data-placeholder="Alege meniul">' +
+        '<span class="rsvp-dropdown-value">Alege meniul</span>' +
+        '<svg class="rsvp-dropdown-arrow" viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg" width="10" height="6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>' +
+      '</button>' +
+      '<ul class="rsvp-dropdown-list">' +
+        '<li data-value="adult">Meniu Adult</li>' +
+        '<li data-value="child">Meniu Copil</li>' +
+      '</ul>' +
+      '<input type="hidden" name="type_' + n + '" value="">' +
     '</div>';
   var extra = document.getElementById('rsvp-extra');
   extra.appendChild(div);
@@ -181,3 +170,11 @@ document.getElementById('rsvp-overlay').addEventListener('click', function (e) {
 });
 
 document.querySelectorAll('#rsvp-form .rsvp-dropdown').forEach(initDropdown);
+
+var rsvpScroll = document.querySelector('.rsvp-scroll');
+if (rsvpScroll) {
+  rsvpScroll.addEventListener('scroll', function () {
+    var modal = rsvpScroll.closest('.rsvp-modal');
+    if (modal) modal.classList.toggle('scrolled', rsvpScroll.scrollTop > 4);
+  });
+}

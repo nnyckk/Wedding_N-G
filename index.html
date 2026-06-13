@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="assets/css/layout.css?v=1.3">
   <link rel="stylesheet" href="assets/css/main.css?v=1.4">
   <link rel="stylesheet" href="assets/css/envelope.css?v=1.3">
-  <link rel="stylesheet" href="assets/css/rsvp.css?v=1.1">
+  <link rel="stylesheet" href="assets/css/rsvp.css?v=1.4">
 </head>
 <body>
 <div id="phone-frame">
@@ -476,13 +476,16 @@
 
     <button class="rsvp-close" onclick="closeRsvp()" aria-label="Închide">×</button>
 
-    <p class="rsvp-title">Confirmă prezența</p>
-    <div class="rsvp-divider">
-      <span></span>
-      <svg width="7" height="7" viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg"><path d="M4 0L8 4L4 8L0 4Z" fill="currentColor"/></svg>
-      <span></span>
+    <div class="rsvp-header">
+      <p class="rsvp-title">Confirmă prezența</p>
+      <div class="rsvp-divider">
+        <span></span>
+        <svg width="7" height="7" viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg"><path d="M4 0L8 4L4 8L0 4Z" fill="currentColor"/></svg>
+        <span></span>
+      </div>
     </div>
 
+    <div class="rsvp-scroll">
     <form id="rsvp-form" onsubmit="submitRsvp(event)">
 
       <!-- Din partea cui (o singură dată, pentru tot grupul) -->
@@ -502,22 +505,16 @@
       <div class="rsvp-person">
         <p class="rsvp-person-label">Persoana 1</p>
         <input type="text" name="name_0" placeholder="Nume și prenume" class="rsvp-input">
-        <div class="rsvp-type-row">
-          <div class="rsvp-dropdown">
-            <button type="button" class="rsvp-dropdown-trigger placeholder" data-placeholder="Alege meniul">
-              <span class="rsvp-dropdown-value">Alege meniul</span>
-              <svg class="rsvp-dropdown-arrow" viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg" width="10" height="6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
-            </button>
-            <ul class="rsvp-dropdown-list">
-              <li data-value="adult">Meniu Adult</li>
-              <li data-value="child">Meniu Copil</li>
-            </ul>
-            <input type="hidden" name="type_0" value="">
-          </div>
-          <span class="rsvp-info" tabindex="0" role="button" aria-label="Informații despre meniu">
-            <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12" y1="11" x2="12" y2="16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="7.5" r="1.3" fill="currentColor"/></svg>
-            <span class="rsvp-tooltip" role="tooltip">Dumneavoastră, ca părinți, cunoașteți cel mai bine preferințele copilului. Vă rugăm să alegeți meniul potrivit — de adult sau de copil.</span>
-          </span>
+        <div class="rsvp-dropdown">
+          <button type="button" class="rsvp-dropdown-trigger placeholder" data-placeholder="Alege meniul">
+            <span class="rsvp-dropdown-value">Alege meniul</span>
+            <svg class="rsvp-dropdown-arrow" viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg" width="10" height="6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+          </button>
+          <ul class="rsvp-dropdown-list">
+            <li data-value="adult">Meniu Adult</li>
+            <li data-value="child">Meniu Copil</li>
+          </ul>
+          <input type="hidden" name="type_0" value="">
         </div>
       </div>
 
@@ -526,12 +523,13 @@
 
       <button type="button" class="rsvp-add-btn" onclick="addRsvpGuest()">+ Adaugă persoană</button>
 
-      <textarea class="rsvp-textarea" name="notes" placeholder="Notițe sau mențiuni speciale (alergii, etc.)…"></textarea>
+      <textarea class="rsvp-textarea" name="notes" placeholder="Notițe sau mențiuni speciale (alergii, meniu vegetarian etc.)…"></textarea>
 
       <div id="rsvp-status" class="rsvp-status" aria-live="polite"></div>
 
       <button type="submit" class="rsvp-submit">Confirmă prezența</button>
     </form>
+    </div>
 
   </div>
 </div>
@@ -539,7 +537,7 @@
 </div><!-- #phone-frame -->
 
 <script src="assets/js/envelope.js?v=1.2"></script>
-<script src="assets/js/rsvp.js?v=1.1"></script>
+<script src="assets/js/rsvp.js?v=1.2"></script>
 <script src="assets/js/main.js?v=1.3"></script>
 </body>
 </html>
