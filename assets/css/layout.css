@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Montserrat";
+  font-family: 'Cormorant Garamond', serif;
 }
 
 /* =========================
@@ -73,7 +73,7 @@
   --color-surface:       #FDFAF6;  /* cream */
   --color-surface-alt:   #EDE0CF;  /* warm beige */
 
-  --color-espresso:      #2C1810;  /* dark espresso */
+  --color-espresso:      #2C1A12;  /* dark espresso */
   --color-espresso-mid:  #4A2C1A;  /* espresso ristretto */
 
   --color-coffee:        #6B3F2A;  /* rich coffee */

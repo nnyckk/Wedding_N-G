@@ -134,9 +134,9 @@ body {
 }
 
 .intro-text {
-  font-size: 13px;
+  font-size: 16px;
   color: var(--color-text-muted);
-  line-height: 2.1;
+  line-height: 1.5;
   letter-spacing: 0.2px;
 }
 
@@ -317,28 +317,52 @@ body {
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
 }
-.cd-date-full {
-  font-size: 16px;
-  letter-spacing: 4px;
-  color: var(--color-espresso);
-  font-weight: 300;
-  white-space: nowrap;
+.cd-date {
+  max-width: 300px;
+  margin: 14px auto 26px;
 }
-.cd-mid-divider {
+.cd-rule {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin: 24px auto;
-  max-width: 140px;
+  margin: 0 auto;
   color: rgba(200, 136, 90, 0.45);
 }
-.cd-mid-divider span {
+.cd-rule span {
   flex: 1;
   height: 1px;
   background: currentColor;
-  opacity: 0.45;
 }
-.cd-mid-divider svg { opacity: 0.6; flex-shrink: 0; }
+.cd-rule svg {
+  flex-shrink: 0;
+  width: 60px;
+  height: 16px;
+}
+.cd-weekday {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 17px;
+  letter-spacing: 3px;
+  color: var(--color-caramel-light);
+  margin: 14px 0 2px;
+}
+.cd-date-main {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.cd-day-num,
+.cd-month,
+.cd-year {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 34px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 1px;
+  color: var(--color-cream);
+}
 .cd-label {
   font-size: 9px;
   letter-spacing: 5px;
@@ -350,7 +374,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  margin-top: 36px;
+  margin-top: 18px;
 }
 .cd-item {
   min-width: 61px;
@@ -360,7 +384,7 @@ body {
 .cd-sep {
   font-family: 'Montserrat', sans-serif;
   font-size: 22px;
-  font-weight: 200;
+  font-weight: 300;
   color: var(--color-caramel-light);
   line-height: 1;
   padding-top: 18px;
@@ -421,7 +445,7 @@ body {
 .fc-half span {
   font-family: 'Montserrat', sans-serif;
   font-size: 37px;
-  font-weight: 200;
+  font-weight: 300;
   color: var(--color-espresso);
   line-height: 1;
   letter-spacing: -2px;
@@ -494,21 +518,32 @@ body {
 }
 .cal-eyebrow {
   font-family: 'Great Vibes', cursive;
-  font-size: 38px;
+  font-size: 54px;
   color: var(--color-caramel-light);
   margin-bottom: 4px;
   line-height: 1.1;
 }
+.cal-card {
+  max-width: 360px;
+  margin: 40px auto 0;
+  padding: 30px 24px 32px;
+  background: rgba(255, 248, 239, 0.03);
+  border: 1px solid rgba(200, 136, 90, 0.22);
+  border-radius: 14px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+}
 .cal-month {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 20px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 27px;
   color: var(--color-espresso);
-  letter-spacing: 5px;
+  letter-spacing: 4px;
   font-weight: 300;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 14px;
+  line-height: 1;
+  margin-bottom: 16px;
 }
 .cal-month::before,
 .cal-month::after {
@@ -536,6 +571,7 @@ body {
   opacity: 0.8;
 }
 .cal-day {
+  font-family: 'Montserrat', sans-serif;
   font-size: 13px;
   color: var(--color-text-muted);
   font-weight: 300;
@@ -644,7 +680,12 @@ body {
 .vt-card {
   text-align: center;
   width: 100%;
-  padding: 20px 0;
+  max-width: 340px;
+  padding: 32px 24px;
+  background: rgba(255, 248, 239, 0.03);
+  border: 1px solid rgba(200, 136, 90, 0.22);
+  border-radius: 14px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
 }
 .vt-label {
   font-size: 9px;
@@ -655,43 +696,52 @@ body {
   opacity: 0.85;
 }
 .vt-time {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 62px;
-  font-weight: 200;
-  color: var(--color-coffee);
-  letter-spacing: 3px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 300;
+  color: var(--color-caramel);
+  letter-spacing: 4px;
   line-height: 1;
-  margin-bottom: 16px;
-}
-.vt-name {
-  font-size: 12px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--color-text);
-  font-weight: 500;
-  margin-top: 14px;
-  margin-bottom: 4px;
+  margin-bottom: 18px;
 }
 .vt-city {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: 15px;
+  font-size: 14px;
+  letter-spacing: 1px;
   color: var(--color-text-muted);
-  margin-bottom: 14px;
+  margin-bottom: 4px;
+}
+.vt-name {
+  font-size: 27px;
+  letter-spacing: 1px;
+  color: var(--color-coffee);
+  font-weight: 400;
+  line-height: 1.25;
+  margin-top: 0;
+  margin-bottom: 10px;
 }
 .vt-link {
-  font-size: 9px;
-  letter-spacing: 3px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 10px;
+  letter-spacing: 2.5px;
   text-transform: uppercase;
   color: var(--color-caramel);
   text-decoration: none;
-  border-bottom: 1px solid rgba(200, 136, 90, 0.35);
-  padding-bottom: 2px;
-  transition: color var(--transition), border-color var(--transition);
+  padding: 9px 18px;
+  border: 1px solid rgba(200, 136, 90, 0.4);
+  border-radius: 999px;
+  transition: color var(--transition), border-color var(--transition), background var(--transition);
+}
+.vt-link-pin {
+  flex-shrink: 0;
 }
 .vt-link:hover {
-  color: var(--color-coffee);
-  border-color: var(--color-coffee);
+  color: var(--color-cream);
+  border-color: var(--color-caramel);
+  background: rgba(200, 136, 90, 0.18);
 }
 .vt-connector {
   display: flex;
@@ -748,30 +798,33 @@ body {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  box-shadow: 0 2px 8px rgba(44,24,16,0.18);
-  outline: 2px solid rgba(255,255,255,0.7);
-  outline-offset: 2px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.28);
+  outline: 1px solid rgba(229, 185, 138, 0.55);
+  outline-offset: 3px;
 }
 .swatch-label {
-  font-size: 9px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--color-text-muted);
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: var(--color-caramel-light);
 }
 .dress-formal {
-  font-size: 9px;
-  letter-spacing: 5px;
-  text-transform: uppercase;
-  color: var(--color-caramel);
-  opacity: 0.85;
-  margin-bottom: 20px;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 17px;
+  letter-spacing: 3px;
+  color: var(--color-caramel-light);
+  margin-bottom: 24px;
 }
 .dress-note {
-  font-size: 13px;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 16px;
   color: var(--color-text-muted);
-  line-height: 1.9;
+  line-height: 1.5;
   text-align: center;
-  max-width: 300px;
+  max-width: 320px;
   margin: 0 auto;
 }
 
@@ -791,49 +844,89 @@ body {
   border-bottom: none;
 }
 .confirm-text {
-  font-size: 13px;
+  font-size: 16px;
   color: var(--color-text-muted);
-  line-height: 1.9;
-  max-width: 280px;
+  line-height: 1.5;
+  max-width: 300px;
   margin: 0 auto 28px;
 }
 .confirm-text strong { color: var(--color-coffee); font-weight: 500; }
 .confirm-contacts {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
-  gap: 20px;
+  gap: 14px;
 }
 .confirm-contact {
+  flex: 1;
+  max-width: 210px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
-  text-decoration: none;
+  gap: 12px;
+  padding: 22px 12px;
+  background: rgba(255, 248, 239, 0.03);
+  border: 1px solid rgba(200, 136, 90, 0.28);
+  border-radius: 14px;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.16);
+  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
 }
 .confirm-name {
   font-family: 'Great Vibes', cursive;
   font-size: 32px;
   color: var(--color-caramel-light);
   line-height: 1;
+  margin-bottom: 4px;
+}
+.confirm-phone,
+.confirm-email {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  width: 100%;
+  padding: 9px 10px;
+  border: 1px solid rgba(200, 136, 90, 0.4);
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background var(--transition), border-color var(--transition);
 }
 .confirm-phone {
-  font-size: 13px;
-  letter-spacing: 2px;
+  font-size: 12px;
+  letter-spacing: 1px;
   color: var(--color-coffee);
   font-weight: 300;
-  text-decoration: none;
+}
+.confirm-phone,
+.confirm-phone span {
+  font-family: 'Montserrat', sans-serif;
 }
 .confirm-email {
-  font-size: 11px;
-  letter-spacing: 0.5px;
+  font-size: 10px;
+  letter-spacing: 0.2px;
   color: var(--color-text-light);
-  text-decoration: none;
 }
-.confirm-sep {
-  width: 1px;
-  height: 48px;
-  background: var(--color-border);
+.confirm-phone svg,
+.confirm-email svg {
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+.confirm-phone:active,
+.confirm-email:active {
+  background: rgba(200, 136, 90, 0.22);
+  border-color: rgba(229, 185, 138, 0.7);
+}
+@media (hover: hover) and (pointer: fine) {
+  .confirm-contact:hover {
+    transform: translateY(-3px);
+    border-color: rgba(229, 185, 138, 0.6);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.26);
+  }
+  .confirm-phone:hover,
+  .confirm-email:hover {
+    background: rgba(200, 136, 90, 0.18);
+    border-color: rgba(229, 185, 138, 0.6);
+  }
 }
 /* ========================
    MULȚUMIRI
@@ -876,7 +969,6 @@ body {
 .section-countdown .fc-line    { background: rgba(255,248,239,0.08); }
 
 /* countdown texte */
-.section-countdown .cd-date-full  { color: rgba(255,248,239,0.75); }
 .section-countdown .cd-unit       { color: rgba(255,248,239,0.4); border-top-color: rgba(255,248,239,0.1); }
 
 /* calendar pe fond întunecat */
@@ -893,8 +985,8 @@ body {
 .section-venue .vt-connector { color: rgba(200,136,90,0.3); }
 
 /* dress texte */
-.section-dress .dress-note    { color: rgba(255,248,239,0.55); }
-.section-dress .swatch-label  { color: rgba(255,248,239,0.5); }
+.section-dress .dress-note    { color: rgba(255,248,239,0.6); }
+.section-dress .swatch-label  { color: var(--color-caramel-light); }
 
 /* confirm texte */
 .section-confirm .confirm-text   { color: rgba(255,248,239,0.6); }
@@ -933,7 +1025,7 @@ body {
   white-space: nowrap;
 }
 .confirm-online-btn {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 10px;
   letter-spacing: 3px;
   text-transform: uppercase;

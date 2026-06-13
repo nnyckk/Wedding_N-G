@@ -31,9 +31,9 @@
 
 /* ── Tap hint ── */
 .env-hint {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: 13px;
+  font-size: 17px;
   color: rgba(200,136,90,0.6);
   letter-spacing: 2px;
   margin-bottom: 32px;
@@ -144,7 +144,7 @@
   display: flex; align-items: center; justify-content: center;
 }
 .seal-text {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 14px; font-weight: 400; letter-spacing: 3px;
   color: rgba(240,195,155,0.8);
   text-shadow:
