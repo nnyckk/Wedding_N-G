@@ -298,7 +298,9 @@ body {
 #music-btn.visible.peeked {
   opacity: 1;
 }
-#music-btn:hover  { background: var(--color-coffee); transform: scale(1.08); }
+@media (hover: hover) and (pointer: fine) {
+  #music-btn:hover  { background: var(--color-coffee); transform: scale(1.08); }
+}
 #music-btn:active { transform: scale(0.95); }
 #music-btn .material-symbols-rounded {
   font-size: 24px;
@@ -688,8 +690,8 @@ body {
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
 }
 .vt-label {
-  font-size: 9px;
-  letter-spacing: 5px;
+  font-size: 12px;
+  letter-spacing: 4px;
   text-transform: uppercase;
   color: var(--color-caramel);
   margin-bottom: 8px;
@@ -707,7 +709,7 @@ body {
 .vt-city {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: 14px;
+  font-size: 17px;
   letter-spacing: 1px;
   color: var(--color-text-muted);
   margin-bottom: 4px;
@@ -738,10 +740,12 @@ body {
 .vt-link-pin {
   flex-shrink: 0;
 }
-.vt-link:hover {
-  color: var(--color-cream);
-  border-color: var(--color-caramel);
-  background: rgba(200, 136, 90, 0.18);
+@media (hover: hover) and (pointer: fine) {
+  .vt-link:hover {
+    color: var(--color-cream);
+    border-color: var(--color-caramel);
+    background: rgba(200, 136, 90, 0.18);
+  }
 }
 .vt-connector {
   display: flex;
@@ -1019,15 +1023,17 @@ body {
   background: currentColor;
 }
 .confirm-or p {
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 3px;
   text-transform: uppercase;
   white-space: nowrap;
+  color: var(--color-caramel-light);
 }
 .confirm-online-btn {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 10px;
-  letter-spacing: 3px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--color-espresso);
   background: var(--color-caramel);
@@ -1039,10 +1045,15 @@ body {
   -webkit-tap-highlight-color: transparent;
   box-shadow: 0 4px 20px rgba(200,136,90,0.35);
 }
-.confirm-online-btn:hover,
 .confirm-online-btn:active {
   background: var(--color-caramel-light);
   transform: translateY(-1px);
+}
+@media (hover: hover) and (pointer: fine) {
+  .confirm-online-btn:hover {
+    background: var(--color-caramel-light);
+    transform: translateY(-1px);
+  }
 }
 
 

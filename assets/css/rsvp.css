@@ -54,7 +54,9 @@
   transition: background var(--transition);
   -webkit-tap-highlight-color: transparent;
 }
-.rsvp-close:hover { background: var(--color-surface-alt); }
+@media (hover: hover) and (pointer: fine) {
+  .rsvp-close:hover { background: var(--color-surface-alt); }
+}
 
 .rsvp-title {
   font-family: 'Great Vibes', cursive;
@@ -208,9 +210,11 @@
 .rsvp-dropdown-list li + li {
   border-top: 1px solid rgba(200,136,90,0.1);
 }
-.rsvp-dropdown-list li:hover {
-  background: rgba(200,136,90,0.08);
-  color: var(--color-coffee);
+@media (hover: hover) and (pointer: fine) {
+  .rsvp-dropdown-list li:hover {
+    background: rgba(200,136,90,0.08);
+    color: var(--color-coffee);
+  }
 }
 .rsvp-dropdown-list li.selected {
   color: var(--color-coffee);
@@ -238,10 +242,15 @@
   transition: background var(--transition), border-color var(--transition);
   -webkit-tap-highlight-color: transparent;
 }
-.rsvp-add-btn:hover,
 .rsvp-add-btn:active {
   background: rgba(200,136,90,0.08);
   border-color: var(--color-caramel);
+}
+@media (hover: hover) and (pointer: fine) {
+  .rsvp-add-btn:hover {
+    background: rgba(200,136,90,0.08);
+    border-color: var(--color-caramel);
+  }
 }
 
 /* ── Textarea ── */
@@ -304,5 +313,7 @@
   transition: background var(--transition), opacity var(--transition);
   -webkit-tap-highlight-color: transparent;
 }
-.rsvp-submit:hover { background: var(--color-coffee); }
+@media (hover: hover) and (pointer: fine) {
+  .rsvp-submit:hover { background: var(--color-coffee); }
+}
 .rsvp-submit:disabled { opacity: 0.6; cursor: default; }
