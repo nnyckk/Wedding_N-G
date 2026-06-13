@@ -130,6 +130,75 @@
 .rsvp-input:focus { border-color: var(--color-caramel); }
 .rsvp-input::placeholder { color: var(--color-text-light); }
 
+/* ── Tip meniu (dropdown + info) ── */
+.rsvp-type-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.rsvp-type-row .rsvp-dropdown {
+  flex: 1;
+  margin-bottom: 0;
+}
+.rsvp-info {
+  position: relative;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-caramel);
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.rsvp-tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  right: -6px;
+  width: 210px;
+  background: var(--color-espresso);
+  color: var(--color-cream);
+  font-size: 12px;
+  line-height: 1.45;
+  letter-spacing: 0.2px;
+  text-align: left;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(200,136,90,0.3);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(4px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+  z-index: 20;
+  pointer-events: none;
+}
+.rsvp-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  right: 12px;
+  border: 6px solid transparent;
+  border-top-color: var(--color-espresso);
+}
+.rsvp-info:focus .rsvp-tooltip,
+.rsvp-info.show .rsvp-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+@media (hover: hover) and (pointer: fine) {
+  .rsvp-info:hover .rsvp-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+
 /* ── Custom Dropdown ── */
 .rsvp-dropdown {
   position: relative;
