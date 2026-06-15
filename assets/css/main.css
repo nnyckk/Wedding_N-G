@@ -140,6 +140,25 @@ body {
   letter-spacing: 0.2px;
 }
 
+.parents-names {
+  margin-top: 10px;
+}
+
+.parents-pair {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  letter-spacing: 0.2px;
+}
+
+.parents-amp {
+  font-family: 'Great Vibes', cursive;
+  font-size: 20px;
+  color: var(--color-accent, var(--color-text-muted));
+  margin: 0 4px;
+}
+
 /* ========================
    PHOTO SLOTS
 ======================== */
