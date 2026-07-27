@@ -20,7 +20,9 @@
     if (opened) return;
     opened = true;
 
-    if (audio) audio.play().then(updateMusicIcon).catch(function () {});
+    /* Dacă browserul blochează autoplay-ul, iconița trebuie să arate
+       tot 'play_arrow' — altfel rămâne pe starea inițială din HTML. */
+    if (audio) audio.play().then(updateMusicIcon).catch(updateMusicIcon);
 
     /* 1. Open the flap */
     wrap.classList.add('open');

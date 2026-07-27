@@ -29,13 +29,30 @@ function toggleMusic() {
   var hero        = document.querySelector('.hero-photo');
   var phoneScroll = document.getElementById('phone-scroll');
 
+  var framed = function () {
+    return phoneScroll && window.innerWidth >= 520;
+  };
+
   function update() {
-    var rect = hero.getBoundingClientRect();
-    btn.classList.toggle('visible', rect.bottom < window.innerHeight * 0.4);
+    /* Pe desktop conținutul derulează în #phone-scroll, nu în fereastră —
+       reperul trebuie să fie înălțimea containerului, nu window.innerHeight. */
+    var viewTop, viewHeight;
+    if (framed()) {
+      var box = phoneScroll.getBoundingClientRect();
+      viewTop    = box.top;
+      viewHeight = box.height;
+    } else {
+      viewTop    = 0;
+      viewHeight = window.innerHeight;
+    }
+
+    var heroBottom = hero.getBoundingClientRect().bottom - viewTop;
+    btn.classList.toggle('visible', heroBottom < viewHeight * 0.4);
   }
 
-  var scrollEl = (phoneScroll && window.innerWidth >= 520) ? phoneScroll : window;
+  var scrollEl = framed() ? phoneScroll : window;
   scrollEl.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update, { passive: true });
   update();
 })();
 
