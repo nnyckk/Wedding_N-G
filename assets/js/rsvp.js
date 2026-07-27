@@ -73,6 +73,25 @@ function closeRsvp() {
   }, 400);
 }
 
+/* Renumerotează persoanele adăugate dinamic după o ștergere.
+   Fără asta indicii rămân cu goluri (name_1, name_3) și eticheta
+   afișată nu mai corespunde poziției reale. */
+function reindexRsvpGuests() {
+  var people = document.querySelectorAll('#rsvp-extra .rsvp-person');
+  people.forEach(function (person, idx) {
+    var n = idx + 1;
+    person.querySelector('.rsvp-person-label').textContent = 'Persoana ' + (n + 1);
+    person.querySelector('.rsvp-input').name = 'name_' + n;
+    person.querySelector('input[type="hidden"]').name = 'type_' + n;
+  });
+  rsvpGuestCount = people.length;
+}
+
+function removeRsvpGuest(btn) {
+  btn.closest('.rsvp-person').remove();
+  reindexRsvpGuests();
+}
+
 function addRsvpGuest() {
   rsvpGuestCount++;
   var n   = rsvpGuestCount;
@@ -81,7 +100,7 @@ function addRsvpGuest() {
   div.innerHTML =
     '<div class="rsvp-person-header">' +
       '<span class="rsvp-person-label">Persoana ' + (n + 1) + '</span>' +
-      '<button type="button" class="rsvp-remove" onclick="this.closest(\'.rsvp-person\').remove()" aria-label="Șterge">×</button>' +
+      '<button type="button" class="rsvp-remove" onclick="removeRsvpGuest(this)" aria-label="Șterge">×</button>' +
     '</div>' +
     '<input type="text" name="name_' + n + '" placeholder="Nume și prenume" class="rsvp-input">' +
     '<div class="rsvp-dropdown">' +
@@ -149,20 +168,28 @@ function submitRsvp(e) {
   var payload = {};
   new FormData(form).forEach(function (val, key) { payload[key] = val; });
 
-  fetch(RSVP_SCRIPT_URL + '?' + new URLSearchParams(payload), {
-    mode: 'no-cors'
-  })
-  .then(function () {
-    setRsvpStatus('success', 'Confirmare trimisă! Te așteptăm cu drag.');
-    btn.textContent = 'Confirmă prezența';
-    btn.disabled = false;
-    setTimeout(closeRsvp, 2500);
-  })
-  .catch(function () {
-    setRsvpStatus('error', 'A apărut o eroare. Te rog să ne contactezi direct.');
-    btn.textContent = 'Confirmă prezența';
-    btn.disabled = false;
-  });
+  /* Fără no-cors: răspunsul trebuie citit ca să știm dacă a intrat
+     în Sheet. Cu no-cors orice eroare (403, 500) arăta ca succes. */
+  fetch(RSVP_SCRIPT_URL + '?' + new URLSearchParams(payload))
+    .then(function (res) {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.json();
+    })
+    .then(function (data) {
+      if (!data || data.ok !== true) {
+        throw new Error(data && data.error ? data.error : 'Răspuns neașteptat');
+      }
+      setRsvpStatus('success', 'Confirmare trimisă! Te așteptăm cu drag.');
+      btn.textContent = 'Confirmă prezența';
+      btn.disabled = false;
+      setTimeout(closeRsvp, 2500);
+    })
+    .catch(function (err) {
+      if (window.console) console.error('RSVP:', err);
+      setRsvpStatus('error', 'A apărut o eroare. Te rog să ne contactezi direct.');
+      btn.textContent = 'Confirmă prezența';
+      btn.disabled = false;
+    });
 }
 
 document.getElementById('rsvp-overlay').addEventListener('click', function (e) {
